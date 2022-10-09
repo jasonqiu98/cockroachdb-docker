@@ -1,8 +1,8 @@
 # CockroachDB Docker (Insecure)
 
-This demo follows the [link](https://www.cockroachlabs.com/docs/stable/build-a-go-app-with-cockroachdb.html?filters=local). The package `github.com/jackc/pgx/v4` is used, which is compatiable to `github.com/cockroachdb/cockroach-go/v2/crdb/crdbpgx` up to 9 October, 2022. If later versions of `pgx` or `cockroach-go` are used, you may find some hints for compatiability from the docs of CockroachDB.
+This demo follows the tutorial from the [link](https://www.cockroachlabs.com/docs/stable/build-a-go-app-with-cockroachdb.html?filters=local). The package `github.com/jackc/pgx/v4` is used, which is compatiable to `github.com/cockroachdb/cockroach-go/v2/crdb/crdbpgx` up to 9 October, 2022. If later versions of `pgx` or `cockroach-go` are used, you may find some hints for compatiability, still, from the previous link.
 
-The LICENSE of the [project](https://github.com/cockroachlabs/example-app-go-pgx/) is included the project as the CRUD example is completely borrowed from this project.
+The LICENSE of the [project](https://github.com/cockroachlabs/example-app-go-pgx/) is included in the project as the CRUD example is completely borrowed from this project.
 
 ## Run the database client on the local machine
 
