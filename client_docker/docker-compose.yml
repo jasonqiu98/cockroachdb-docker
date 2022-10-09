@@ -1,0 +1,60 @@
+version: '3.9'
+
+services:
+  client:
+    image: golang:1.19
+    container_name: client
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    depends_on:
+      - roach1
+      - roach2
+      - roach3
+    volumes:
+      - ./:/go/src/client/
+    networks:
+      - db
+
+  roach1:
+    image: cockroachdb/cockroach:latest
+    container_name: roach1
+    restart: always
+    command: start --insecure --join=roach1,roach2,roach3
+    volumes:
+      - ./data/roach1:/cockroach/cockroach-data
+      - ./init/dbinit.sql:/cockroach/dbinit.sql
+    ports:
+      - 26257:26257
+      - 8081:8080
+    networks:
+      - db
+
+  roach2:
+    image: cockroachdb/cockroach:latest
+    container_name: roach2
+    restart: always
+    command: start --insecure --join=roach1
+    volumes:
+      - ./data/roach2:/cockroach/cockroach-data
+    ports:
+      - 26258:26257
+      - 8082:8080
+    networks:
+      - db
+  
+  roach3:
+    image: cockroachdb/cockroach:latest
+    container_name: roach3
+    restart: always
+    command: start --insecure --join=roach1
+    volumes:
+      - ./data/roach3:/cockroach/cockroach-data
+    ports:
+      - 26259:26257
+      - 8083:8080
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge

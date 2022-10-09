@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS bank;
+
+SET DATABASE = bank;
+
+CREATE TABLE accounts (
+    id UUID PRIMARY KEY,
+    balance INT8
+);
